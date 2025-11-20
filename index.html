@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dave's Bitches and Hoes</title>
+  <style>
+    :root {
+      --bg: #0b0b0b;
+      --card: #181818;
+      --accent: #d11f8b;
+      --accent-soft: rgba(209, 31, 139, 0.3);
+      --text: #f9f9f9;
+      --muted: #aaaaaa;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: radial-gradient(circle at top, #311027 0, #050505 55%, #000 100%);
+      color: var(--text);
+      text-align: center;
+      min-height: 100vh;
+    }
+
+    header {
+      padding: 60px 20px 40px;
+      background: linear-gradient(135deg, #d11f8b, #5b1fd1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: 2.8rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    header p {
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    nav {
+      margin-top: 18px;
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      text-decoration: none;
+      font-size: 0.9rem;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.28);
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      transition: background 0.2s, transform 0.15s, box-shadow 0.15s;
+    }
+
+    nav a:hover {
+      background: rgba(0, 0, 0, 0.6);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.6);
+    }
+
+    .section {
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .section h2 {
+      font-size: 1.9rem;
+      margin-bottom: 8px;
+    }
+
+    .section p.section-tagline {
+      margin: 0 0 30px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .cards {
+      display: grid;
+      gap: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    }
+
+    .card {
+      background: var(--card);
+      padding: 22px 20px;
+      border-radius: 16px;
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.03),
+        0 16px 40px rgba(0, 0, 0, 0.7);
+      text-align: left;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, var(--accent-soft), transparent 60%);
+      opacity: 0.6;
+      pointer-events: none;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 8px;
+      font-size: 1.3rem;
+    }
+
+    .card p {
+      margin-top: 0;
+      margin-bottom: 14px;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .btn,
+    button {
+      display: inline-block;
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: none;
+      background: var(--accent);
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 10px 20px rgba(209, 31, 139, 0.5);
+      transition: transform 0.15s, box-shadow 0.15s, filter 0.15s;
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn:hover,
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 26px rgba(209, 31, 139, 0.7);
+      filter: brightness(1.05);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      box-shadow: none;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    /* Apply section */
+    #apply {
+      padding-top: 30px;
+      padding-bottom: 60px;
+    }
+
+    form {
+      max-width: 600px;
+      margin: 0 auto;
+      background: var(--card);
+      padding: 24px 20px 26px;
+      border-radius: 18px;
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.04),
+        0 16px 40px rgba(0, 0, 0, 0.7);
+      text-align: left;
+    }
+
+    label {
+      display: block;
+      font-size: 0.9rem;
+      margin-bottom: 4px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+      outline: none;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(209, 31, 139, 0.6);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 90px;
+      max-height: 220px;
+    }
+
+    .helper {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: -10px;
+      margin-bottom: 14px;
+    }
+
+    footer {
+      padding: 14px 20px 20px;
+      background: #050505;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      color: var(--muted);
+      font-size: 0.8rem;
+      margin-top: 30px;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        padding: 40px 16px 24px;
+      }
+      h1 {
+        font-size: 2.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Dave's Bitches and Hoes</h1>
+    <p>Where the party never ends and the vibes stay loud.</p>
+
+    <nav>
+      <a href="#about">About the Crew</a>
+      <a href="#events">Events</a>
+      <a href="#merch">Merch</a>
+      <a href="#apply">Apply: New Flavor</a>
+    </nav>
+  </header>
+
+  <!-- Main overview -->
+  <section class="section" id="about">
+    <h2>About the Crew</h2>
+    <p class="section-tagline">
+      The unofficial home base for Dave's wildest nights and loudest friends.
+    </p>
+
+    <div class="cards">
+      <article class="card">
+        <h3>The Vibe</h3>
+        <p>
+          This is a fun, comedic, over-the-top brand identity made purely for
+          entertainment. Inside jokes, party energy, and nothing too serious.
+        </p>
+        <a href="#apply" class="btn">Apply to Be a New Flavor</a>
+      </article>
+
+      <article class="card">
+        <h3>House Rules</h3>
+        <p>
+          Respect the crew, respect the space, bring good energy. If you’re here,
+          you’re part of the bit — so lean into the fun.
+        </p>
+        <span class="btn btn-secondary">Good vibes only ✌️</span>
+      </article>
+    </div>
+  </section>
+
+  <!-- Events -->
+  <section class="section" id="events">
+    <h2>Events</h2>
+    <p class="section-tagline">
+      Parties, takeovers, and nights that probably shouldn’t be on camera.
+    </p>
+
+    <div class="cards">
+      <article class="card">
+        <h3>Upcoming Drops</h3>
+        <p>
+          Check back soon for the official event calendar: house parties, club
+          linkups, and surprise appearances.
+        </p>
+      </article>
+
+      <article class="card">
+        <h3>Host with Dave</h3>
+        <p>
+          Want to collab on a party or event? Lock in your venue, your DJ, and
+          your crew — then reach out to get the brand involved.
+        </p>
+        <!-- You can replace this mailto with your real email -->
+        <a href="mailto:example@example.com?subject=Event%20Collab%20with%20Dave"
+           class="btn btn-secondary">Email to Collab</a>
+      </article>
+    </div>
+  </section>
+
+  <!-- Merch -->
+  <section class="section" id="merch">
+    <h2>Merch</h2>
+    <p class="section-tagline">
+      Hoodies, tees, and fits that say “I probably have stories I can’t post.”
+    </p>
+
+    <div class="cards">
+      <article class="card">
+        <h3>Coming Soon</h3>
+        <p>
+          The first drop will feature limited-run designs. Once they’re gone,
+          they’re gone — so stay plugged in.
+        </p>
+      </article>
+
+      <article class="card">
+        <h3>Stay in the Loop</h3>
+        <p>
+          Follow the socials and watch for sneak peeks. Early supporters get
+          first dibs on preorders and exclusive colorways.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Apply to be a "New Flavor" -->
+  <section class="section" id="apply">
+    <h2>Apply to Be a New Flavor</h2>
+    <p class="section-tagline">
+      Think you’ve got the energy, personality, and chaos to join the lineup?
+      Drop your info below.
+    </p>
+
+    <form
+      action="https://example.com/submit" 
+      method="POST"
+    >
+      <!-- NOTE:
+           Replace the action URL above with a real form endpoint
+           (e.g., Google Forms, Formspree, your own backend, etc.)
+      -->
+
+      <label for="name">Name / Nickname</label>
+      <input id="name" name="name" type="text" placeholder="What do people call you?" required />
+
+      <label for="handle">Instagram / Social Handle</label>
+      <input id="handle" name="handle" type="text" placeholder="@yourhandle" required />
+      <div class="helper">
+        Optional: drop the @ or your preferred contact link.
+      </div>
+
+      <label for="vibe">Describe your vibe</label>
+      <textarea id="vibe" name="vibe" placeholder="Tell Dave why you’re a whole flavor, not just a snack." required></textarea>
+
+      <label for="availability">Where are you based?</label>
+      <input id="availability" name="availability" type="text" placeholder="City / region" />
+
+      <button type="submit">Send Application</button>
+      <p class="helper">
+        This form is just for fun. Submitting doesn’t guarantee anything except
+        possible roasting in the group chat.
+      </p>
+    </form>
+  </section>
+
+  <footer>
+    © 2025 Dave's Bitches and Hoes · All jokes, all vibes.
+  </footer>
+</body>
+</html>
